@@ -11,6 +11,7 @@ import LanguageSwitcher, {
   addTranslationChangeListener,
   initializeTranslation,
 } from "../components/LanguageSwitcher";
+import AnalyzerTester from "../components/AnalyzerTester";
 
 type TranslateFunction = (key: string) => string;
 
@@ -212,6 +213,7 @@ export default function Home() {
   const [parsedJson, setParsedJson] = useState<IndexDataType>(defaultJson);
   const [t, setT] = useState<TranslateFunction>(() => globalT);
   const [indexName, setIndexName] = useState<string>("");
+  const [selectedAnalyzer, setSelectedAnalyzer] = useState<string>("standard");
 
   useEffect(() => {
     initializeTranslation();
@@ -231,7 +233,22 @@ export default function Home() {
     }
   }, [jsonValue]);
 
-  const parseInputAndSetIndex = (input: string) => {
+  useEffect(() => {
+    try {
+      const parsedData = parseInputAndSetIndex(jsonValue);
+      
+      if (parsedData?.settings?.analysis?.analyzer) {
+        const analyzers = Object.keys(parsedData.settings.analysis.analyzer);
+        if (analyzers.length > 0) {
+          setSelectedAnalyzer(analyzers[0]);
+        }
+      }
+    } catch (error) {
+      console.error("파싱 오류:", error);
+    }
+  }, [jsonValue]);
+
+  const parseInputAndSetIndex = (input: string): IndexDataType | undefined => {
     const apiFormatMatch = input
       .trim()
       .match(/^(PUT|POST)\s+([^\s{]+)\s*(\{[\s\S]*\})$/i);
@@ -244,6 +261,7 @@ export default function Home() {
         const parsed = JSON.parse(jsonContent);
         setParsedJson(parsed as IndexDataType);
         setIndexName(indexNameFromApi);
+        return parsed as IndexDataType;
       } catch (jsonError) {
         console.error("JSON 파싱 오류:", jsonError);
       }
@@ -251,38 +269,33 @@ export default function Home() {
       try {
         const parsed = JSON.parse(input);
         setParsedJson(parsed as IndexDataType);
-
         setIndexName("");
+        return parsed as IndexDataType;
       } catch (error) {
         console.error("일반 JSON 파싱 오류:", error);
       }
     }
+    return undefined;
   };
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="h-screen flex flex-col bg-gray-50 overflow-hidden">
-        {/* 헤더 */}
+      <div className="flex flex-col h-screen overflow-hidden">
         <header className="bg-white shadow-sm py-4 px-6 border-b border-gray-200 flex-shrink-0">
           <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800">
-                {safeT("app.title", t)}
-              </h1>
-            </div>
+            <h1 className="text-2xl font-bold text-gray-800">
+              {safeT("app.title", t)}
+            </h1>
             <LanguageSwitcher />
           </div>
         </header>
 
-        {/* 메인 컨텐츠 - 3단 구조 */}
         <div className="flex flex-1 overflow-hidden">
-          {/* 좌측: 매핑 사이드바 - 스크롤 개선 */}
           <aside className="w-64 bg-white shadow-sm border-r border-gray-200 flex-shrink-0 overflow-y-auto">
             <MappingSidebar />
           </aside>
 
-          {/* 중앙: 메인 콘텐츠 영역 - JSON 에디터 */}
-          <main className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 flex flex-col overflow-hidden">
             <div className="p-4 bg-white border-b border-gray-200 shadow-sm flex-shrink-0">
               <h2 className="text-lg font-bold text-gray-800">
                 {safeT("editor.title", t)}
@@ -294,15 +307,13 @@ export default function Home() {
               </h2>
             </div>
 
-            {/* 에디터 영역 */}
             <EditorWithDropZone
               jsonValue={jsonValue}
               setJsonValue={setJsonValue}
               t={t}
             />
-          </main>
+          </div>
 
-          {/* 우측: 시각화 영역 */}
           <aside className="w-96 bg-white border-l border-gray-200 flex-shrink-0 flex flex-col">
             <div className="p-4 bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10 flex-shrink-0">
               <h2 className="text-lg font-bold text-gray-800">
@@ -313,6 +324,12 @@ export default function Home() {
               <IndexVisualizer indexData={parsedJson} />
             </div>
           </aside>
+        </div>
+
+        <div className="border-t border-gray-200 p-4 bg-white">
+          <AnalyzerTester 
+            analyzer={selectedAnalyzer} 
+          />
         </div>
       </div>
     </DndProvider>

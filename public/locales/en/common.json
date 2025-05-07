@@ -39,5 +39,28 @@
     "ko": "Korean",
     "en": "English",
     "switchLanguage": "Change Language"
+  },
+  "analyzerTester": {
+    "title": "Analyzer Simulation",
+    "analyzerType": "Analyzer Type",
+    "noDescription": "No analyzer description available.",
+    "inputText": "Text to Analyze",
+    "textPlaceholder": "Enter text to analyze",
+    "useDefaultExample": "Use Default Example",
+    "tokenizationResult": "Tokenization Result",
+    "original": "Original",
+    "token": "Token",
+    "position": "Position",
+    "startOffset": "Start Offset",
+    "endOffset": "End Offset",
+    "mobileInfo": "※ Some information is hidden on mobile. For more details, rotate your screen or view on a larger display.",
+    "simulationWarning": "* This is a simulation and may differ from actual Elasticsearch analysis results.",
+    "visualTokenRepresentation": "Visual Token Representation",
+    "standardDescription": "Standard Analyzer: Splits text into words and converts to lowercase.",
+    "simpleDescription": "Simple Analyzer: Converts non-characters to spaces and converts to lowercase.",
+    "whitespaceDescription": "Whitespace Analyzer: Splits text by whitespace.",
+    "keywordDescription": "Keyword Analyzer: Treats the input text as a single token.",
+    "patternDescription": "Pattern Analyzer: Tokenizes text using a regular expression pattern.",
+    "uax_url_emailDescription": "URL and Email Analyzer: Preserves URLs and emails while tokenizing text."
   }
 } 
