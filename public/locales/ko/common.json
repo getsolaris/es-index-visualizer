@@ -1,0 +1,43 @@
+{
+  "app": {
+    "title": "Elasticsearch Index Visualizer"
+  },
+  "mapping": {
+    "title": "필드",
+    "subtitle": "블록을 드래그하여 필드를 추가하세요",
+    "analyzers": "분석기",
+    "fieldPrompt": "필드 이름을 입력하세요:"
+  },
+  "editor": {
+    "title": "에디터"
+  },
+  "visualizer": {
+    "title": "시각화",
+    "shardConfig": "샤드 구성",
+    "shardFormula": {
+      "title": "샤드 계산법",
+      "primaryShard": "Primary",
+      "primaryDesc": "Primary Shard",
+      "replicaShard": "Replica",
+      "replicaDesc": "Primary Shard 당 복제본",
+      "totalShards": "총 샤드 수",
+      "unit": "개"
+    },
+    "fieldStructure": "필드 구조",
+    "noMapping": "매핑 정보가 없습니다.",
+    "capture": {
+      "button": "캡처하기",
+      "title": "캡처",
+      "shardImage": "샤드 구성 이미지",
+      "fieldImage": "필드 구조 이미지",
+      "success": "이미지가 다운로드되었습니다.",
+      "error": "캡처 중 오류가 발생했습니다."
+    },
+    "notfound": "찾을 수 없음"
+  },
+  "language": {
+    "ko": "한국어",
+    "en": "영어",
+    "switchLanguage": "언어 변경"
+  }
+} 

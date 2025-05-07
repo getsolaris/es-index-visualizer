@@ -1,0 +1,43 @@
+{
+  "app": {
+    "title": "Elasticsearch Index Visualizer"
+  },
+  "mapping": {
+    "title": "Field ",
+    "subtitle": "Drag blocks to add fields",
+    "analyzers": "Analyzers",
+    "fieldPrompt": "Enter field name:"
+  },
+  "editor": {
+    "title": "Editor"
+  },
+  "visualizer": {
+    "title": "Visualization",
+    "shardConfig": "Shard Configuration",
+    "shardFormula": {
+      "title": "Shard Formula",
+      "primaryShard": "Primary",
+      "primaryDesc": "Primary Shard",
+      "replicaShard": "Replica",
+      "replicaDesc": "Primary Shard per shard",
+      "totalShards": "Total Shards",
+      "unit": ""
+    },
+    "fieldStructure": "Field Structure",
+    "noMapping": "No mapping information.",
+    "capture": {
+      "button": "Capture",
+      "title": "Capture",
+      "shardImage": "Shard Configuration Image",
+      "fieldImage": "Field Structure Image",
+      "success": "Image has been downloaded.",
+      "error": "An error occurred during capture."
+    },
+    "notfound": "notfound"
+  },
+  "language": {
+    "ko": "Korean",
+    "en": "English",
+    "switchLanguage": "Change Language"
+  }
+} 
