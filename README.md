@@ -13,6 +13,8 @@ A tool for visually designing and inspecting Elasticsearch index structures.
 - Visualize shard distribution
     - <img src="https://raw.githubusercontent.com/getsolaris/es-index-visualizer/refs/heads/main/images/2.png"  width="200px">
 - Visualize tokenizers and analyzers
+- Analyzer Simulation
+    - <img src="https://raw.githubusercontent.com/getsolaris/es-index-visualizer/refs/heads/main/images/3.png"  width="200px">
 - Capture visualized sections as images
 
 ## Supported Field Types
