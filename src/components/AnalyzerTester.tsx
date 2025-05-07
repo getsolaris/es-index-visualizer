@@ -6,6 +6,7 @@ import {
   isTranslationLoaded,
   addTranslationChangeListener,
 } from "./LanguageSwitcher";
+import Link from "next/link";
 
 interface Token {
   token: string;
@@ -556,6 +557,9 @@ const AnalyzerTester: React.FC<AnalyzerTesterProps> = ({
             </div>
             <div className="mt-2 text-xs text-gray-500">
               {safeT("analyzerTester.simulationWarning", t)}
+              <Link href="https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-analyze" target="_blank" className="text-blue-600 hover:text-blue-800">
+                &nbsp;Elasticsearch Analyze API
+              </Link>
             </div>
           </div>
         </div>
