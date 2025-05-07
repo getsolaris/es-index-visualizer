@@ -13,7 +13,7 @@
     - <img src="https://raw.githubusercontent.com/getsolaris/es-index-visualizer/refs/heads/main/images/2.png" width="200px">
 - Tokenizer, Analyzer 시각화
 - 분석기 시뮬레이션
-    - <img src="https://raw.githubusercontent.com/getsolaris/es-index-visualizer/refs/heads/main/images/3.png"  width="200px">
+    - <img src="https://raw.githubusercontent.com/getsolaris/es-index-visualizer/refs/heads/main/images/3.png"  width="400px">
 - 시각화 섹션 캡처 기능
 
 ## 타입 지원
