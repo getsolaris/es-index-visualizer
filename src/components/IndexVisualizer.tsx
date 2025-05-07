@@ -937,7 +937,7 @@ const IndexVisualizer: React.FC<IndexVisualizerProps> = ({ indexData }) => {
               >
                 {/* Replica를 행 단위로 표시 */}
                 {Array.from({ length: numberOfReplicas }, (_, replicaIdx) => (
-                  <>
+                  <React.Fragment key={`replica-row-${replicaIdx}`}>
                     {Array.from(
                       { length: Math.min(numberOfShards, 5) },
                       (_, primaryIdx) => (
@@ -958,7 +958,7 @@ const IndexVisualizer: React.FC<IndexVisualizerProps> = ({ indexData }) => {
                         <span className="font-bold">...</span>
                       </div>
                     )}
-                  </>
+                  </React.Fragment>
                 ))}
               </div>
             </>

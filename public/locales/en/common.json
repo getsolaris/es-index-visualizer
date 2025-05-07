@@ -39,5 +39,22 @@
     "ko": "Korean",
     "en": "English",
     "switchLanguage": "Change Language"
+  },
+  "analyzerTester": {
+    "title": "Analyzer Simulation",
+    "analyzerType": "Analyzer Type",
+    "noDescription": "No analyzer description available.",
+    "inputText": "Text to Analyze",
+    "textPlaceholder": "Enter text to analyze",
+    "useDefaultExample": "Use Default Example",
+    "tokenizationResult": "Tokenization Result",
+    "original": "Original",
+    "token": "Token",
+    "position": "Position",
+    "startOffset": "Start Offset",
+    "endOffset": "End Offset",
+    "mobileInfo": "※ Some information is hidden on mobile. For more details, rotate your screen or view on a larger display.",
+    "simulationWarning": "* This is a simulation and may differ from actual Elasticsearch analysis results.",
+    "visualTokenRepresentation": "Visual Token Representation"
   }
 } 
