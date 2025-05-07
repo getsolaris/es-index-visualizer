@@ -24,130 +24,6 @@ interface AnalyzerInfo {
   examples: AnalyzerExample[];
 }
 
-const analyzerExamples: Record<string, AnalyzerInfo> = {
-  standard: {
-    description: "표준 분석기: 텍스트를 단어로 분할하고 소문자로 변환합니다.",
-    examples: [
-      {
-        text: "The quick brown fox jumps over the lazy dog.",
-        tokens: [
-          { token: "the", position: 0, start_offset: 0, end_offset: 3 },
-          { token: "quick", position: 1, start_offset: 4, end_offset: 9 },
-          { token: "brown", position: 2, start_offset: 10, end_offset: 15 },
-          { token: "fox", position: 3, start_offset: 16, end_offset: 19 },
-          { token: "jumps", position: 4, start_offset: 20, end_offset: 25 },
-          { token: "over", position: 5, start_offset: 26, end_offset: 30 },
-          { token: "the", position: 6, start_offset: 31, end_offset: 34 },
-          { token: "lazy", position: 7, start_offset: 35, end_offset: 39 },
-          { token: "dog", position: 8, start_offset: 40, end_offset: 43 },
-        ],
-      },
-    ],
-  },
-  simple: {
-    description:
-      "심플 분석기: 문자가 아닌 모든 것을 공백으로 변환하고 소문자로 변환합니다.",
-    examples: [
-      {
-        text: "The quick brown-fox jumps over the lazy dog.",
-        tokens: [
-          { token: "the", position: 0, start_offset: 0, end_offset: 3 },
-          { token: "quick", position: 1, start_offset: 4, end_offset: 9 },
-          { token: "brown", position: 2, start_offset: 10, end_offset: 15 },
-          { token: "fox", position: 3, start_offset: 16, end_offset: 19 },
-          { token: "jumps", position: 4, start_offset: 20, end_offset: 25 },
-          { token: "over", position: 5, start_offset: 26, end_offset: 30 },
-          { token: "the", position: 6, start_offset: 31, end_offset: 34 },
-          { token: "lazy", position: 7, start_offset: 35, end_offset: 39 },
-          { token: "dog", position: 8, start_offset: 40, end_offset: 43 },
-        ],
-      },
-    ],
-  },
-  whitespace: {
-    description: "공백 분석기: 공백을 기준으로 텍스트를 분할합니다.",
-    examples: [
-      {
-        text: "The quick brown-fox jumps over the lazy dog.",
-        tokens: [
-          { token: "The", position: 0, start_offset: 0, end_offset: 3 },
-          { token: "quick", position: 1, start_offset: 4, end_offset: 9 },
-          { token: "brown-fox", position: 2, start_offset: 10, end_offset: 19 },
-          { token: "jumps", position: 3, start_offset: 20, end_offset: 25 },
-          { token: "over", position: 4, start_offset: 26, end_offset: 30 },
-          { token: "the", position: 5, start_offset: 31, end_offset: 34 },
-          { token: "lazy", position: 6, start_offset: 35, end_offset: 39 },
-          { token: "dog.", position: 7, start_offset: 40, end_offset: 44 },
-        ],
-      },
-    ],
-  },
-  keyword: {
-    description:
-      "키워드 분석기: 입력 텍스트를 하나의 단일 토큰으로 취급합니다.",
-    examples: [
-      {
-        text: "The quick brown fox jumps over the lazy dog.",
-        tokens: [
-          {
-            token: "The quick brown fox jumps over the lazy dog.",
-            position: 0,
-            start_offset: 0,
-            end_offset: 44,
-          },
-        ],
-      },
-    ],
-  },
-  pattern: {
-    description: "패턴 분석기: 정규식 패턴을 사용하여 텍스트를 토큰화합니다.",
-    examples: [
-      {
-        text: "The quick, brown-fox jumps over the lazy dog.",
-        tokens: [
-          { token: "the", position: 0, start_offset: 0, end_offset: 3 },
-          { token: "quick", position: 1, start_offset: 4, end_offset: 9 },
-          { token: "brown", position: 2, start_offset: 11, end_offset: 16 },
-          { token: "fox", position: 3, start_offset: 17, end_offset: 20 },
-          { token: "jumps", position: 4, start_offset: 21, end_offset: 26 },
-          { token: "over", position: 5, start_offset: 27, end_offset: 31 },
-          { token: "the", position: 6, start_offset: 32, end_offset: 35 },
-          { token: "lazy", position: 7, start_offset: 36, end_offset: 40 },
-          { token: "dog", position: 8, start_offset: 41, end_offset: 44 },
-        ],
-      },
-    ],
-  },
-  uax_url_email: {
-    description:
-      "URL 및 이메일 분석기: URL과 이메일을 보존하면서 텍스트를 토큰화합니다.",
-    examples: [
-      {
-        text: "Contact us at support@example.com or visit https://example.com",
-        tokens: [
-          { token: "contact", position: 0, start_offset: 0, end_offset: 7 },
-          { token: "us", position: 1, start_offset: 8, end_offset: 10 },
-          { token: "at", position: 2, start_offset: 11, end_offset: 13 },
-          {
-            token: "support@example.com",
-            position: 3,
-            start_offset: 14,
-            end_offset: 33,
-          },
-          { token: "or", position: 4, start_offset: 34, end_offset: 36 },
-          { token: "visit", position: 5, start_offset: 37, end_offset: 42 },
-          {
-            token: "https://example.com",
-            position: 6,
-            start_offset: 43,
-            end_offset: 62,
-          },
-        ],
-      },
-    ],
-  },
-};
-
 type TranslateFunction = (key: string) => string;
 
 const cachedTranslations: Record<string, string> = {};
@@ -184,6 +60,127 @@ const AnalyzerTester: React.FC<AnalyzerTesterProps> = ({
   const [customExample, setCustomExample] = useState<AnalyzerExample | null>(
     null
   );
+
+  const analyzerExamples: Record<string, AnalyzerInfo> = {
+    standard: {
+      description: safeT("analyzerTester.standardDescription", t),
+      examples: [
+        {
+          text: "The quick brown fox jumps over the lazy dog.",
+          tokens: [
+            { token: "the", position: 0, start_offset: 0, end_offset: 3 },
+            { token: "quick", position: 1, start_offset: 4, end_offset: 9 },
+            { token: "brown", position: 2, start_offset: 10, end_offset: 15 },
+            { token: "fox", position: 3, start_offset: 16, end_offset: 19 },
+            { token: "jumps", position: 4, start_offset: 20, end_offset: 25 },
+            { token: "over", position: 5, start_offset: 26, end_offset: 30 },
+            { token: "the", position: 6, start_offset: 31, end_offset: 34 },
+            { token: "lazy", position: 7, start_offset: 35, end_offset: 39 },
+            { token: "dog", position: 8, start_offset: 40, end_offset: 43 },
+          ],
+        },
+      ],
+    },
+    simple: {
+      description: safeT("analyzerTester.simpleDescription", t),
+      examples: [
+        {
+          text: "The quick brown-fox jumps over the lazy dog.",
+          tokens: [
+            { token: "the", position: 0, start_offset: 0, end_offset: 3 },
+            { token: "quick", position: 1, start_offset: 4, end_offset: 9 },
+            { token: "brown", position: 2, start_offset: 10, end_offset: 15 },
+            { token: "fox", position: 3, start_offset: 16, end_offset: 19 },
+            { token: "jumps", position: 4, start_offset: 20, end_offset: 25 },
+            { token: "over", position: 5, start_offset: 26, end_offset: 30 },
+            { token: "the", position: 6, start_offset: 31, end_offset: 34 },
+            { token: "lazy", position: 7, start_offset: 35, end_offset: 39 },
+            { token: "dog", position: 8, start_offset: 40, end_offset: 43 },
+          ],
+        },
+      ],
+    },
+    whitespace: {
+      description: safeT("analyzerTester.whitespaceDescription", t),
+      examples: [
+        {
+          text: "The quick brown-fox jumps over the lazy dog.",
+          tokens: [
+            { token: "The", position: 0, start_offset: 0, end_offset: 3 },
+            { token: "quick", position: 1, start_offset: 4, end_offset: 9 },
+            { token: "brown-fox", position: 2, start_offset: 10, end_offset: 19 },
+            { token: "jumps", position: 3, start_offset: 20, end_offset: 25 },
+            { token: "over", position: 4, start_offset: 26, end_offset: 30 },
+            { token: "the", position: 5, start_offset: 31, end_offset: 34 },
+            { token: "lazy", position: 6, start_offset: 35, end_offset: 39 },
+            { token: "dog.", position: 7, start_offset: 40, end_offset: 44 },
+          ],
+        },
+      ],
+    },
+    keyword: {
+      description: safeT("analyzerTester.keywordDescription", t),
+      examples: [
+        {
+          text: "The quick brown fox jumps over the lazy dog.",
+          tokens: [
+            {
+              token: "The quick brown fox jumps over the lazy dog.",
+              position: 0,
+              start_offset: 0,
+              end_offset: 44,
+            },
+          ],
+        },
+      ],
+    },
+    pattern: {
+      description: safeT("analyzerTester.patternDescription", t),
+      examples: [
+        {
+          text: "The quick, brown-fox jumps over the lazy dog.",
+          tokens: [
+            { token: "the", position: 0, start_offset: 0, end_offset: 3 },
+            { token: "quick", position: 1, start_offset: 4, end_offset: 9 },
+            { token: "brown", position: 2, start_offset: 11, end_offset: 16 },
+            { token: "fox", position: 3, start_offset: 17, end_offset: 20 },
+            { token: "jumps", position: 4, start_offset: 21, end_offset: 26 },
+            { token: "over", position: 5, start_offset: 27, end_offset: 31 },
+            { token: "the", position: 6, start_offset: 32, end_offset: 35 },
+            { token: "lazy", position: 7, start_offset: 36, end_offset: 40 },
+            { token: "dog", position: 8, start_offset: 41, end_offset: 44 },
+          ],
+        },
+      ],
+    },
+    uax_url_email: {
+      description: safeT("analyzerTester.uax_url_emailDescription", t),
+      examples: [
+        {
+          text: "Contact us at support@example.com or visit https://example.com",
+          tokens: [
+            { token: "contact", position: 0, start_offset: 0, end_offset: 7 },
+            { token: "us", position: 1, start_offset: 8, end_offset: 10 },
+            { token: "at", position: 2, start_offset: 11, end_offset: 13 },
+            {
+              token: "support@example.com",
+              position: 3,
+              start_offset: 14,
+              end_offset: 33,
+            },
+            { token: "or", position: 4, start_offset: 34, end_offset: 36 },
+            { token: "visit", position: 5, start_offset: 37, end_offset: 42 },
+            {
+              token: "https://example.com",
+              position: 6,
+              start_offset: 43,
+              end_offset: 62,
+            },
+          ],
+        },
+      ],
+    },
+  };
 
   useEffect(() => {
     const unsubscribe = addTranslationChangeListener(() => {
@@ -417,9 +414,6 @@ const AnalyzerTester: React.FC<AnalyzerTesterProps> = ({
           </div>
 
           <div className="mt-4 pt-3 border-t border-b pb-3 border-gray-200">
-            <h4 className="text-sm font-medium mb-2">
-              {safeT("analyzerTester.visualTokenRepresentation", t)}
-            </h4>
             <div className="p-3 bg-gray-50 rounded border border-gray-300 break-words text-base leading-relaxed">
               {example.text.split("").map((char, idx) => {
                 const tokenForPosition = example.tokens.find(
