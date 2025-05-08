@@ -13,7 +13,7 @@
   },
   "visualizer": {
     "title": "시각화",
-    "shardConfig": "샤드 구성",
+    "shardConfig": "샤드",
     "shardFormula": {
       "title": "샤드 계산법",
       "primaryShard": "Primary",
@@ -23,7 +23,7 @@
       "totalShards": "총 샤드 수",
       "unit": "개"
     },
-    "fieldStructure": "필드 구조",
+    "fieldStructure": "필드",
     "noMapping": "매핑 정보가 없습니다.",
     "capture": {
       "button": "캡처하기",

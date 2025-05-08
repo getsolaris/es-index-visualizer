@@ -13,7 +13,7 @@
   },
   "visualizer": {
     "title": "Visualization",
-    "shardConfig": "Shard Configuration",
+    "shardConfig": "Shard",
     "shardFormula": {
       "title": "Shard Formula",
       "primaryShard": "Primary",
@@ -23,7 +23,7 @@
       "totalShards": "Total Shards",
       "unit": ""
     },
-    "fieldStructure": "Field Structure",
+    "fieldStructure": "Field",
     "noMapping": "No mapping information.",
     "capture": {
       "button": "Capture",
